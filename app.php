@@ -9,19 +9,20 @@ require_once 'controllers/LogoutController.php';
 
 $router = new Router();
 
+// routing
 $router->addRoute('login', 'LoginController');
 $router->addRoute('learn', 'LearnController');
 $router->addRoute('admin', 'AdminController');
 $router->addRoute('modules', 'ModulesController');
 $router->addRoute('logout', 'LogoutController');
 
-// Pobranie aktualnej ścieżki z URL (możesz to robić w routerze)
+// pobranie aktualnej ścieżki z URL 
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// Domyślna ścieżka do nauki, jeśli żadna inna nie pasuje
+// ustawienie domyślnej ścieżki na /learn
 if ($url === '/' || $url === '') {
     $url = '/learn';
 }
 
-// Przekazanie ścieżki do routera w celu obsługi żądania
+// przekazanei ścieżki do routera
 $router->dispatch($url);

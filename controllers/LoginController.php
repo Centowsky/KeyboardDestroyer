@@ -4,7 +4,7 @@ require_once __DIR__ . '/../framework/Controller.php';
 
 class LoginController extends Controller {
     public function run() {
-        // Warunek sprawdzenia sesji, jeśli zalogowany to przekierowanie na /learn
+        // warunek sprawdzenia sesji
         if (isset($_SESSION['user'])) {
             header('Location: /learn');
             exit();
@@ -22,7 +22,6 @@ class LoginController extends Controller {
                 header('Location: /learn');
                 exit();
             } else {
-                // Komunikat o błędzie podczas logowania
                 $this->view->error = 'Błędne dane logowania.';
             }
         }
@@ -30,7 +29,6 @@ class LoginController extends Controller {
         // Włącz buforowanie wyjścia
         ob_start();
         
-        // Wyrenderuj widok
         $this->view->render('login');
         
         // Wyślij bufor i wyczyść go

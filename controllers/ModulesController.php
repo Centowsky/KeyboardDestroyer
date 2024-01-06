@@ -4,7 +4,6 @@ require_once __DIR__ . '/../framework/Controller.php';
 
 class ModulesController extends Controller {
     public function run() {
-        // Sprawdź, czy przesyłane są dane POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Odczytaj dane przesłane przez AJAX
             $postData = file_get_contents("php://input");

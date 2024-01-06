@@ -8,18 +8,13 @@
 <body>
     <h1>Panel Administratora</h1>
 
-     <!-- Dodawanie Modułu -->
      <div>
         <?php include 'templates/add/add_module.php'; ?>
     </div>
 
-    <!-- Dodawanie Lekcji -->
     <div>
         <?php include 'templates/add/add_lesson.php'; ?>
     </div>
-
-
-    <!-- Tutaj możesz dodać inne sekcje panelu administratora -->
 
 </body>
 </html>

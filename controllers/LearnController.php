@@ -3,13 +3,13 @@ require_once __DIR__ . '/../framework/Controller.php';
 
 class LearnController extends Controller {
     public function run() {
-        // Sprawdź, czy sesja jest już aktywna
+        // sprawdzenie czy sesja aktywna
         if (session_status() === PHP_SESSION_NONE) {
-            // Jeśli nie, rozpocznij sesję
+            // nie = rozpocznij sesje
             session_start();
         }
 
-        // Warunek sprawdzenia sesji, jeśli nie jest zalogowany, przekieruj na /login
+        // jesli nie zalogowany przekieruj do logowania
         if (!isset($_SESSION['user'])) {
             header('Location: /login');
             exit();
@@ -17,13 +17,10 @@ class LearnController extends Controller {
 
         $this->view->username = $_SESSION['user'];
 
-        // Reszta kodu kontrolera LearnController
         $this->displayModules();
     }
 
     private function displayModules() {
         $this->view->render('learn');
     }
-
-    // Pozostała część kodu kontrolera...
 }
