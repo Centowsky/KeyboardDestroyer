@@ -12,6 +12,12 @@ class View {
     }
 
     public function render($template) {
-        include '../templates/' . $template . '.php';
+        $templatePath = __DIR__ . '/../templates/' . $template . '.php';
+        
+        if (file_exists($templatePath)) {
+            include $templatePath;
+        } else {
+            echo 'Template not found: ' . $template;
+        }
     }
 }

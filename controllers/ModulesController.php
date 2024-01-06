@@ -1,6 +1,6 @@
 <?php
 
-require_once '../framework/Controller.php';
+require_once __DIR__ . '/../framework/Controller.php';
 
 class ModulesController extends Controller {
     public function run() {
