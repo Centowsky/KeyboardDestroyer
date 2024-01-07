@@ -10,7 +10,6 @@ switch ($request_uri) {
         echo renderPage('home');
         break;
     case '/learn':
-        session_start();
         if (!isset($_SESSION['user'])) {
             header('Location: /login');
             exit();
