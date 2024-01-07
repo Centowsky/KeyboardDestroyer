@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strona główna | Keyboard Destroyer</title>
     <link rel="stylesheet" type="text/css" href="../src/css/home.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+
+
 </head>
+
 <body>
     <?php
     // session_start();
@@ -31,16 +38,27 @@
     }
     ?>
 
-    <h1>Welcome to the Home Page!</h1>
 
-    <form method="post" action="/login">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <input type="submit" value="Login">
-    </form>
+
+    <div id="tlo" class="card">
+        <div class="card2">
+            <h1 id="zaloguj">Zaloguj</h1>
+            <form method="post" action="/login">
+                <div class="input-container">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-container">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button class="btn">
+                    <input type="submit" value="Login">
+                </button>
+
+
+            </form>
+        </div>
+    </div>
 </body>
 </html>

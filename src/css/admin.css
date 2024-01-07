@@ -1,0 +1,141 @@
+:root {
+  --kolor-submit: rgba(55, 56, 58, 0.55);
+}
+
+body {
+  position: relative;
+  /*background-image: url('https://images.pexels.com/photos/1309766/pexels-photo-1309766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');*/
+  background-image: url("../images/tlo-admin.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#background {
+  width: 700px;
+  /*background-color: rgba(0, 0, 0, 0.35);*/
+  padding: 70px;
+  border: 1px solid white;
+  border-radius: 15px;
+
+  background: transparent;
+  backdrop-filter: blur(5px);
+  margin: 0 auto 100px;
+}
+
+.center-naglowki {
+  margin: 0 auto;
+  width: 600px;
+  padding: 20px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+#admin-napis {
+  font-family: monospace;
+  font-size: 2.5em;
+  color: white;
+  /*font-style: italic;*/
+}
+
+.naglowki-h2 {
+  color: white;
+  font-family: "Quicksand", sans-serif;
+}
+
+.form-element {
+  margin-bottom: 15px;
+  border-radius: 15px;
+  padding: 8px;
+  font-size: 16px;
+  width: 100%;
+  border: 2px solid rgba(255, 255, 255, 0.17);
+
+  background: linear-gradient(
+    43deg,
+    rgba(65, 88, 208, 0.2) 0%,
+    rgba(200, 80, 192, 0.2) 46%,
+    rgba(255, 204, 112, 0.2) 100%
+  );
+  &:focus {
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.99);
+    color: white;
+  }
+}
+
+.form-element[type="submit"] {
+  /*background-color: var(--kolor-submit);*/
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  font-family: "Quicksand", sans-serif;
+}
+
+.form-element[type="textarea"] {
+  height: 150px;
+  resize: vertical;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: white;
+  font-family: "Quicksand", sans-serif;
+}
+
+.naglowki-h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#moduleId,
+#lessonName,
+#textContent,
+[type="submit"] {
+  width: 100%;
+}
+
+.btn {
+  border: none;
+  width: 15em;
+  height: 5em;
+  border-radius: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: var(--kolor-submit);
+  cursor: pointer;
+  transition: all 450ms ease-in-out;
+}
+
+.sparkle {
+  fill: rgba(0, 0, 0, 0.24);
+  transition: all 800ms ease;
+}
+
+.text {
+  font-weight: 600;
+  color: rgba(238, 238, 238, 0.74);
+  font-size: medium;
+  font-family: "Quicksand", sans-serif;
+}
+
+.btn:hover {
+  background: linear-gradient(0deg, #a47cf3, #683fea);
+  box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
+    inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
+    0px 0px 0px 4px rgba(255, 255, 255, 0.2), 0px 0px 180px 0px #9917ff;
+  transform: translateY(-2px);
+}
+
+.btn:hover .text {
+  color: white;
+}
+
+.btn:hover .sparkle {
+  fill: white;
+  transform: scale(1.2);
+}
