@@ -1,0 +1,148 @@
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../../../images/tlo-logowania2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Quicksand', sans-serif;
+}
+
+#tlo {
+  width: 700px;
+  padding: 70px;
+  border: 1px solid white;
+  border-radius: 15px;
+  background: linear-gradient(43deg, rgba(65, 88, 208, 0.2) 0%, rgba(200, 80, 192, 0.2) 46%, rgba(255, 204, 112, 0.2) 100%);
+  backdrop-filter: blur(5px);
+  background-color: rgba(1, 1, 1, 0.28);
+}
+
+form {
+  text-align: center;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/*napisy username password*/
+.input-container label {
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  margin-bottom: 5px;
+  margin-left: -100px;
+}
+
+.input-container input[type="text"],
+.input-container input[type="password"],
+.input-container input[type="submit"] {
+  background-color: rgba(0, 0, 0, 0.46);
+  border: 2px solid transparent;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+.input-container input[type="text"]:focus,
+.input-container input[type="password"]:focus {
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.99);
+}
+
+#zaloguj {
+  margin: 0 auto;
+  padding: 20px;
+  white-space: nowrap;
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.card {
+  border-radius: 20px;
+  overflow: hidden;
+  transition: border-radius 0.3s, box-shadow 0.3s;
+}
+
+.card2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  transition: all .2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card2:hover {
+  border-radius: 20px;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 30px 1px rgb(255, 255, 255);
+}
+
+
+.btn {
+  position: relative;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1em 2.5em;
+  display: inline-block;
+  border-radius: 6em;
+  transition: all .2s;
+  border: none;
+  font-family: inherit;
+  font-weight: 500;
+  color: black;
+  background-color: white;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+}
+
+.btn::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+input[type="submit"]{
+  background: transparent;
+  border: transparent;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.2em;
+}
