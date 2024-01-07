@@ -19,7 +19,7 @@ switch ($request_uri) {
         echo renderPage('learn', ['modules' => $modules]);
         break;
     case '/admin':
-        session_start();
+        //session_start();
         if (isset($_SESSION['user']) && $_SESSION['user'] === 'admin') {
             echo renderPage('admin');
         } else {
@@ -78,6 +78,20 @@ switch ($request_uri) {
             }
         }
         break;
+    case '/admin/modify_lesson':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['lessonId'], $_POST['newTextContent'])) {
+                $lessonId = $_POST['lessonId'];
+                $newTextContent = $_POST['newTextContent'];
+
+                if (modifyLessonInDatabase($lessonId, $newTextContent)) {
+                    header('Location: /admin');
+                } else {
+                    echo "Błąd podczas modyfikowania lekcji.";
+                }
+            }
+        }
+        break;
     default:
         echo renderPage('home');
         break;
@@ -125,6 +139,20 @@ function saveLessonToDatabase($moduleId, $lessonName, $textContent) {
         $stmt->bindParam(':moduleId', $moduleId);
         $stmt->bindParam(':lessonName', $lessonName);
         $stmt->bindParam(':textContent', $textContent);
+
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        die('Błąd bazy danych: ' . $e->getMessage());
+    }
+}
+function modifyLessonInDatabase($lessonId, $newTextContent) {
+    try {
+        $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
+
+        $query = 'UPDATE lessons SET TextContent = :newTextContent WHERE LessonID = :lessonId';
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':newTextContent', $newTextContent);
+        $stmt->bindParam(':lessonId', $lessonId);
 
         return $stmt->execute();
     } catch (PDOException $e) {
