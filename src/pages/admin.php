@@ -33,5 +33,32 @@
         
         <button type="submit">Dodaj Moduł</button>
     </form>
+
+    <h2>Modyfikowanie Lekcji</h2>
+    <form method="post" action="/admin/modify_lesson">
+        <label for="lessonId">ID Lekcji:</label>
+        <input type="text" id="lessonId" name="lessonId" required><br>
+
+        <label for="newTextContent">Nowy Tekst Lekcji:</label>
+        <textarea type="text" id="newTextContent" name="newTextContent" required></textarea><br>
+
+        <button type="submit">Modyfikuj Lekcję</button>
+    </form>
+    <h2>Wszystkie Lekcje</h2>
+    <?php
+    try {
+        $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
+        $query = 'SELECT * FROM lessons';
+        $stmt = $db->query($query);
+
+        echo '<ul>';
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo "<li>Lekcja ID: {$row['LessonID']} - {$row['LessonName']} <b>Tekst:</b> {$row['TextContent']}</li>";
+        }
+        echo '</ul>';
+    } catch (PDOException $e) {
+        die('Błąd bazy danych: ' . $e->getMessage());
+    }
+    ?>
 </body>
 </html>
