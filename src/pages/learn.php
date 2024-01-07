@@ -18,7 +18,7 @@ $username = $_SESSION['user'];
     <link rel="stylesheet" type="text/css" href="../src/css/learn.css">
 </head>
 <body>
-    <h1>Witaj, <i><?php echo htmlspecialchars($username); ?></i>!</h1>
+    <h1>Witaj, <i class="text-primary"><?php echo htmlspecialchars($username); ?></i>!</h1>
     <?php if ($username == "admin") echo '<a href="/admin">Panel admina</a>'?>
     <h2>Naucz się szybko pisać.</h2>
     <h3>Dostępne moduły</h3>
