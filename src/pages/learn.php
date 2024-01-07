@@ -21,6 +21,29 @@ $username = $_SESSION['user'];
     <h1>Witaj, <i><?php echo htmlspecialchars($username); ?></i>!</h1>
     <?php if ($username == "admin") echo '<a href="/admin">Panel admina</a>'?>
     <h2>Naucz się szybko pisać.</h2>
+    <h3>Dostępne moduły</h3>
+
+    <?php
+    foreach ($modules as $module) {
+        echo "<div>";
+        echo "<h2>{$module['ModuleName']}</h2>";
+        echo "<p>Difficulty Level: {$module['DifficultyLevel']}</p>";
+
+        // Sprawdź, czy moduł ma lekcje
+        if (!empty($module['Lessons'])) {
+            echo "<ul>";
+            foreach ($module['Lessons'] as $lesson) {
+                echo "<li>{$lesson['LessonName']}</li>";
+            }
+            echo "</ul>";
+        } else {
+            echo "<p>Brak lekcji w tym module.</p>";
+        }
+
+        echo "</div>";
+    }
+    ?>
+
     <a href="/logout">Wyloguj</a>
 </body>
 </html>
