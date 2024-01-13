@@ -139,3 +139,8 @@ label {
   fill: white;
   transform: scale(1.2);
 }
+
+#wyloguj, #-\>learn, #glowna{
+  font-size: 1.5em;
+  color: #07f514;
+}

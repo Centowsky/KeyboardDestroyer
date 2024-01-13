@@ -1,7 +1,109 @@
 body {
-  background-color: #cacaca;
+    position: relative;
+    background-image: url("../images/tlo-learn3.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-.text-primary {
-  color: red;
+
+:root{
+    --czcionka-lekcji: white;
+}
+
+h1{
+    text-align: center;
+}
+
+
+#wejscie-div{
+    margin: 0 auto;
+    width: 700px;
+    background-color: rgba(0, 0, 0, 0.68);
+    font-family: "Quicksand", sans-serif;
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+#dol{
+    width: 400px;
+    background-color: rgba(9, 0, 0, 0.51);
+    border-radius: 15px;
+    margin: 0 auto;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+#dol a{
+    color: #00ff30;
+}
+
+#container-m {
+    display: flex;
+    width: 95%;
+    height:710px;
+    transition: transform 0.5s ease-in-out;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: var(--czcionka-lekcji);
+}
+
+.block {
+    width: 225px;
+    height: 400px;
+    margin: 0 40px;
+    border: 2px solid #ffffff;
+    border-radius: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.46);;
+}
+
+.m_name {
+    /*border: 1px solid #ff0000;*/
+    padding: 5px;
+    font-size: 45px;
+    height: fit-content;
+    border-radius: 20px;
+    width: fit-content;
+    font-family: "Quicksand", sans-serif;
+}
+
+.d_name {
+    padding: 5px;
+    font-size: 20px;
+    height: fit-content;
+    width: fit-content;
+}
+
+#mainBlock {
+    transform: scale(1.1);
+}
+
+#arrows {
+    display: flex;
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.arrow {
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
 }

@@ -10,19 +10,32 @@ $username = $_SESSION['user'];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nauka | Keyboard Deestroyer</title>
+    <title>Nauka | Keyboard Destroyer</title>
+
+
     <link rel="stylesheet" type="text/css" href="../src/css/learn.css">
-    <link rel="stylesheet" type="text/css" href="../src/css/lekcja.css">
+
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
 </head>
+
+
+
 <body>
-    <h1>Witaj, <i class="text-primary"><?php echo htmlspecialchars($username); ?></i>!</h1>
-    <?php if ($username == "admin") echo '<a href="/admin">Panel admina</a>'?>
-    <h2>Naucz się szybko pisać.</h2>
-    <h3>Dostępne moduły</h3>
+
+<div id="wejscie-div">
+    <h1>Witaj, <i class="text-primary"><?php echo htmlspecialchars($username); ?></i> !</h1>
+
+    <h3>Wybierz lekcję z dostępnych modułów</h3>
+
+</div>
 
     <div id="arrows">
         <div id="leftArrow" class="arrow" onclick="navigate(-1)">←</div>
@@ -98,8 +111,17 @@ $username = $_SESSION['user'];
         ?>
     </div>
 
+    <div id="dol">
+        <?php if ($username == "admin") echo '<a href="/admin">Panel admina</a>'?>
+        <br>
+        <a id='wyloguj-napis' href="/logout">Wyloguj</a>
+        <br>
+        <a href="/glowna">Główna</a>
+        <!--    <h2>Naucz się szybko pisać.</h2>-->
+    </div>
+
     <script>
-        let currentIndex = 0; // Indeks bloku środkowego
+        let currentIndex = 0;
         let cont = document.getElementById("container-m")
         let maxIndex = cont.children.length;
         let divNumber
@@ -142,6 +164,6 @@ $username = $_SESSION['user'];
         }
     </script>
 
-    <a href="/logout">Wyloguj</a>
+
 </body>
 </html>

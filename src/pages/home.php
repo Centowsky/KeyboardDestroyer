@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strona główna | Keyboard Destroyer</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
     <link rel="stylesheet" type="text/css" href="../src/css/home.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +18,7 @@
 <body>
     <?php
     // session_start();
-    
+
     if (isset($_SESSION['user'])) {
         header('Location: /learn');
         exit();

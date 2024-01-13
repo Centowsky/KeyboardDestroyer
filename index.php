@@ -7,7 +7,7 @@ $request_uri = $_SERVER['REQUEST_URI'];
 // Routing
 switch ($request_uri) {
     case '/':
-        echo renderPage('home');
+        echo renderPage('glowna');
         break;
     case '/learn':
         if (!isset($_SESSION['user'])) {
@@ -42,12 +42,22 @@ switch ($request_uri) {
             }
         }
         break;
+
+    case '/glowna':
+        echo renderPage('glowna');
+        break;
+
+    case '/klawiatura':
+        echo renderPage('klawiatura');
+        break;
+
     case '/logout':
         session_start();
         session_destroy();
         header('Location: /home');
         exit();
         break;
+
     case '/admin/add_module':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['moduleName'], $_POST['difficultyLevel'])) {

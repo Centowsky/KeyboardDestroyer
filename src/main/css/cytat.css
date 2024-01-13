@@ -1,0 +1,14 @@
+#cytat-zachecajacy{
+    background-color: transparent;
+    color: white;
+    border: solid 1px transparent;
+
+    user-select: none;
+    text-align: center;
+    margin-top: 200px;
+
+    text-wrap: none;
+    wrap-option: nowrap;
+
+    font-family: 'RocknRoll One', sans-serif;
+}

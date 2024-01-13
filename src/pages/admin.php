@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
-    <link rel="stylesheet" type="text/css" href="/src/css/admin.css">
+    <link rel="stylesheet" type="text/css" href="../src/css/admin.css">
+
+
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,6 +101,11 @@
             die('Błąd bazy danych: ' . $e->getMessage());
         }
         ?>
+        <a id='wyloguj' href="/logout">Wyloguj</a>
+        <br>
+        <a id='->learn' href="/learn">Przejdź do Panelu Learn</a>
+        <br>
+        <a id='glowna' href="/glowna">Główna</a>
     </div>
 </body>
 </html>
