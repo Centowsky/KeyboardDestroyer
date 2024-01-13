@@ -1,0 +1,69 @@
+
+#container-m {
+    display: flex;
+    width: 95%;
+    height:710px;
+    transition: transform 0.5s ease-in-out;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: white;
+}
+
+.block {
+    width: 225px;
+    height: 400px;
+    margin: 0 40px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* Display the child elements in a column */
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.m_name {
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 45px;
+    height: fit-content;
+    border-radius: 20px;
+    width: fit-content;
+}
+
+.d_name {
+    padding: 5px;
+    font-size: 20px;
+    height: fit-content;
+    width: fit-content;
+}
+
+#mainBlock {
+    transform: scale(1.4);
+}
+
+#arrows {
+    display: flex;
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.arrow {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#hidden {
+    display: none;
+}
