@@ -106,6 +106,7 @@ $username = $_SESSION['user'];
             }
             else
                 echo "<p class='d_name'>0%</p>";
+            echo "<a href='/learn/usun?moduleId=" . $module['ModuleID'] . "' class='button'>Usuń postęp</a>";
             echo "</div>";
         }
         ?>

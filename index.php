@@ -102,7 +102,19 @@ switch ($request_uri) {
         }
         break;
     default:
-        echo renderPage('home');
+        if (preg_match('/^\/learn\/usun\?moduleId=\d+$/', $request_uri)){
+            if (isset($_GET['moduleId'])) {
+                $moduleId = $_GET['moduleId'];
+                if (usun($moduleId)) {
+                    header('Location: /learn');
+
+                } else {
+                    echo "Błąd podczas resetowania postępu.";
+                }
+            }
+        }
+        else{
+            echo renderPage('home');}
         break;
 }
 
@@ -123,6 +135,21 @@ function authenticateUser($username, $password) {
         die('Błąd bazy danych: ' . $e->getMessage());
     }
 }
+
+function usun($id){
+    try {
+        $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
+        // Zapytanie DELETE z INNER JOIN
+        $query = $db->prepare('DELETE us FROM userstatistics AS us INNER JOIN lessons AS l ON us.LessonID = l.LessonID WHERE l.ModuleID = :id');
+        $query->bindParam(':id',$id);
+
+        // Wykonaj zapytanie
+        return $query->execute();
+
+
+    } catch (PDOException $e) {
+        die('Błąd bazy danych: ' . $e->getMessage());
+    }}
 
 function saveModuleToDatabase($moduleName, $difficultyLevel) {
     try {
