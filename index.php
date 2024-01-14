@@ -7,11 +7,11 @@ $request_uri = $_SERVER['REQUEST_URI'];
 // Routing
 switch ($request_uri) {
     case '/':
-        echo renderPage('glowna');
+        echo renderPage('home');
         break;
     case '/learn':
         if (!isset($_SESSION['user'])) {
-            header('Location: /login');
+            header('Location: /login_page');
             exit();
         }
         $modules = getModulesFromDatabase();
@@ -43,9 +43,6 @@ switch ($request_uri) {
         }
         break;
 
-    case '/glowna':
-        echo renderPage('glowna');
-        break;
 
     case '/klawiatura':
         echo renderPage('klawiatura');
@@ -54,7 +51,7 @@ switch ($request_uri) {
     case '/logout':
         session_start();
         session_destroy();
-        header('Location: /home');
+        header('Location: /');
         exit();
         break;
 
@@ -134,7 +131,7 @@ switch ($request_uri) {
             }
         }
         else{
-            echo renderPage('home');}
+            echo renderPage('logowanie');}
         break;
 }
 

@@ -9,6 +9,7 @@ if (!isset($_SESSION['user'])) {
 $username = $_SESSION['user'];
 ?>
 
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -117,7 +118,7 @@ $username = $_SESSION['user'];
         <br>
         <a id='wyloguj-napis' href="/logout">Wyloguj</a>
         <br>
-        <a href="/glowna">Główna</a>
+        <a href="/">Główna</a>
         <!--    <h2>Naucz się szybko pisać.</h2>-->
     </div>
 
