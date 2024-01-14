@@ -39,9 +39,6 @@
 
 </head>
 <body>
-<?php
-$username = isset($_SESSION['user']) ? $_SESSION['user'] : 'admin';
-?>
 
 <nav class="banner">
 
@@ -52,6 +49,10 @@ $username = isset($_SESSION['user']) ? $_SESSION['user'] : 'admin';
             <!--         <image id="logo" src="/images/logo.png"></image> -->
 
         </button>
+        
+        <button id="button3" class="button" onclick="window.location.href='learn'">Nauka</button>
+
+        <button id="button4" class="button" onclick="window.location.href='klawiatura'">Sprawdź siebie</button>
         <?php
             if (isset($_SESSION['user'])) {
                 // User is logged in
@@ -61,11 +62,6 @@ $username = isset($_SESSION['user']) ? $_SESSION['user'] : 'admin';
                 echo '<button id="button2" class="button" onclick="window.location.href=\'login_page\'">Zaloguj</button>';
             }
         ?>
-        <!-- <button id="button2" class="button" onclick="window.location.href='login_page'">Zaloguj</button> -->
-        <button id="button3" class="button" onclick="window.location.href='learn'">Moduł Lekcji</button>
-
-        <button id="button4" class="button" onclick="window.location.href='klawiatura'">Test klawiatury</button>
-        <!--        <button id="button4" class="button" onclick="window.location.href=''"></button>-->
     </div>
 
     <div id='trig' class="button-container">
@@ -89,7 +85,7 @@ $username = isset($_SESSION['user']) ? $_SESSION['user'] : 'admin';
     <div class="square" id="div1">
         <div id="img1" class="square-inner"></div>
         <div class="description-container">
-            <a href="home.html" class="description">Sprawdź swoje umiejętnosci ➡</a>
+            <a href="/klawiatura" class="description">Sprawdź swoje umiejętnosci ➡</a>
         </div>
     </div>
 
@@ -97,7 +93,7 @@ $username = isset($_SESSION['user']) ? $_SESSION['user'] : 'admin';
     <div class="square" id="div2">
         <div id="img2" class="square-inner"></div>
         <div class="description-container">
-            <a href="home.html" class="description">Lekcje ➡</a>
+            <a href="/learn" class="description">Lekcje ➡</a>
         </div>
     </div>
     <!-- Dodac atrybucje-->
