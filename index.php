@@ -101,6 +101,26 @@ switch ($request_uri) {
             }
         }
         break;
+    case '/admin/delete_lesson':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $requestData = json_decode(file_get_contents('php://input'), true);
+
+            if (isset($requestData['lessonIdToDelete'])) {
+                $lessonIdToDelete = $requestData['lessonIdToDelete'];
+
+                if (deleteLessonFromDatabase($lessonIdToDelete)) {
+
+                    echo json_encode(['success' => true]);
+                    exit();
+                } else {
+
+                    echo json_encode(['success' => false]);
+                    exit();
+                }
+            }
+        }
+        break;
     default:
         if (preg_match('/^\/learn\/usun\?moduleId=\d+$/', $request_uri)){
             if (isset($_GET['moduleId'])) {
@@ -188,6 +208,19 @@ function modifyLessonInDatabase($lessonId, $newTextContent) {
         $query = 'UPDATE lessons SET TextContent = :newTextContent WHERE LessonID = :lessonId';
         $stmt = $db->prepare($query);
         $stmt->bindParam(':newTextContent', $newTextContent);
+        $stmt->bindParam(':lessonId', $lessonId);
+
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        die('Błąd bazy danych: ' . $e->getMessage());
+    }
+}
+function deleteLessonFromDatabase($lessonId) {
+    try {
+        $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
+
+        $query = 'DELETE FROM lessons WHERE LessonID = :lessonId';
+        $stmt = $db->prepare($query);
         $stmt->bindParam(':lessonId', $lessonId);
 
         return $stmt->execute();

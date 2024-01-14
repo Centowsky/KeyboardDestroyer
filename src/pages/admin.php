@@ -8,7 +8,7 @@
 
 
 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
@@ -94,13 +94,53 @@
 
             echo '<ul>';
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<li>Lekcja ID: {$row['LessonID']} - {$row['LessonName']} <b>Tekst:</b> {$row['TextContent']}</li>";
+                echo '<li>';
+                echo "<b>Lekcja ID:</b> {$row['LessonID']} - <b>Module:</b> {$row['ModuleID']} - {$row['LessonName']} <b>Tekst:</b> {$row['TextContent']}";
+                echo '<i class="fas fa-trash delete-lesson" data-lesson-id="' . $row['LessonID'] . '"></i>';
+                echo '</li>';
             }
             echo '</ul>';
         } catch (PDOException $e) {
             die('Błąd bazy danych: ' . $e->getMessage());
         }
         ?>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const deleteLessonIcons = document.querySelectorAll('.delete-lesson');
+
+                deleteLessonIcons.forEach(icon => {
+                    icon.addEventListener('click', function () {
+                        const lessonId = this.getAttribute('data-lesson-id');
+
+                        if (confirm('Czy na pewno chcesz usunąć tę lekcję?')) {
+
+                            fetch('/admin/delete_lesson', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    lessonIdToDelete: lessonId,
+                                }),
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+
+                                        location.reload();
+                                    } else {
+                                        alert('Błąd podczas usuwania lekcji.');
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Błąd fetch:', error);
+                                    alert('Błąd podczas usuwania lekcji.');
+                                });
+                        }
+                    });
+                });
+            });
+        </script>
         <a id='wyloguj' href="/logout">Wyloguj</a>
         <br>
         <a id='->learn' href="/learn">Przejdź do Panelu Learn</a>
