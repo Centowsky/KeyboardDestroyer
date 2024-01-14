@@ -140,7 +140,23 @@ label {
   transform: scale(1.2);
 }
 
-#wyloguj, #-\>learn, #glowna{
+#wyloguj,
+#-\>learn,
+#glowna {
   font-size: 1.5em;
   color: #07f514;
+}
+
+.lessons {
+  color: #fff;
+}
+
+.delete-lessons {
+  list-style-type: none;
+  font-size: 1.1rem;
+}
+
+.delete-lesson {
+  color: red;
+  margin-left: 0.5rem;
 }

@@ -1,90 +1,31 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Keyboard Destroyer</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-
-    <link rel="stylesheet" type="text/css" href="/src/main/css/body.css">
-
-
-    <link rel="stylesheet" type="text/css" href="/src/main/css/baner.css">
-    <link rel="stylesheet" type="text/css" href="/src/main/css/klawiatura.css">
-    <link rel="stylesheet" type="text/css" href="/src/main/css/klawiatura-effects.css">
-    <link rel="stylesheet" type="text/css" href="/src/main/css/zegar.css">
-    <link rel="stylesheet" type="text/css" href="/src/main/css/pole_tekstowe.css">
-    <link rel="stylesheet" type="text/css" href="/src/main/css/puste.css">
-
-
-
-
-
-
-    <link rel="icon" href="/images/logo.png"> <!--  czekamy na og pliki loga -->
-
-
-    <!-- Ikonka nocy -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-
-    <!-- Ikonka light mode -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-    <!-- Ikonka loga -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
-
-
-
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@1,100&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Redacted+Script:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
-
-
-</head>
-<body>
 <?php
-$username = isset($_SESSION['user']) ? $_SESSION['user'] : 'admin';
+$headerPath = __DIR__ . "/../modules/header.php";
+
+if (file_exists($headerPath)) {
+    include($headerPath);
+} else {
+    echo "Błąd: Nie udało się załadować pliku header.php.";
+}
 ?>
-<nav class="banner">
-
-    <div id="x" class="button-container">
-        <button id="button1" class="button" onclick="window.location.href=''">
 
 
-            <!--         <image id="logo" src="/images/logo.png"></image> -->
+<form id="customTextForm">
+    <textarea id="customText" rows="6" name="customText" placeholder="Możesz też napisać swój własny tekst"></textarea><br>
+    <button type="button" onclick="updateCustomText()">Aktualizuj tekst</button>
+</form>
 
-        </button>
-        <button id="button2" class="button" onclick="window.location.href='home'">Zaloguj</button>
-        <button id="button3" class="button" onclick="window.location.href='learn'">Moduł Lekcji</button>
-
-        <!--        <button id="button4" class="button" onclick="window.location.href=''">O nas</button>-->
-        <!--        <button id="button4" class="button" onclick="window.location.href=''"></button>-->
+  <div class="pole_tekstowe_do_pisania">
+        <label>
+            <textarea id="input_gorny" class="input_do_pisania" type="text" spellcheck="false" oninput="sprawdzTekst()"></textarea>
+            <textarea id="input_dolny" class="input_do_pisania" type="text" placeholder="" disabled></textarea>
+        </label>
     </div>
 
-    <div id='trig' class="button-container">
-        <div id="mode" class="button">
-            <span id ="noc-ikonka" class="material-symbols-outlined">clear_night</span>
-            <span id ="dzien-ikonka" class="material-symbols-outlined">light_mode</span>
-        </div>
-    </div>
 
-</nav>
-
-
-
-<div class="pole_tekstowe_do_pisania">
-    <label>
-        <textarea id="input_gorny" class="input_do_pisania" type="text"  spellcheck="false" oninput="sprawdzTekst() "></textarea>  <!-- Po tym piszesz -->
-        <textarea id="input_dolny" class="input_do_pisania" type="text" placeholder="" disabled></textarea>
-    </label>
-</div>
-
-<div id="timer">
+    <div id="timer">
     <p id="czas"></p>
     <p id="accuracy"></p>
 </div>
-
 
 
 <div class="keyboard">
@@ -177,26 +118,47 @@ $username = isset($_SESSION['user']) ? $_SESSION['user'] : 'admin';
     <button data-key="ArrowLeft">⬅</button>
     <button data-key="ArrowDown">⬇</button>
     <button data-key="ArrowRight">➡</button>
-
-
-
-
 </div>
-
-
-
-
-
-<div class="puste">
-    d
-</div>
-
-
-
-
-
 <script src="/src/main/js/mode-animation.js"></script>
 <script src="/src/main/js/click-animation.js"></script>
-<script src="/src/main/js/podmiana-placeholdera.js"></script>
+<script src="/src/main/js/podmiana-placeholdera.js"></script><script>
+        function updateCustomText() {
+    const customText = document.getElementById('customText').value;
+    const inputGorny = document.getElementById('input_gorny');
+    const inputDolny = document.getElementById('input_dolny');
+    const timer = document.getElementById('czas');
+    const acc = document.getElementById('accuracy');
+
+    // Zresetuj czas i dokładność
+    czas_startu = null;
+    czas_konca = null;
+    c = 0;
+    c_startu = 0;
+    timer.style.display = 'none';
+    acc.style.display = 'none';
+
+    if (customText.trim() !== '') {
+        inputDolny.placeholder = customText;
+        originalnyTekstDolny = customText;
+    } else {
+        // Jeśli pole tekstowe jest puste, zresetuj też inputDolny
+        inputDolny.placeholder = '';
+    }
+
+    // Zresetuj pole tekstowe input_gorny
+    inputGorny.value = '';
+}
+function info() {
+    let wpisany_tekst = document.getElementById('input_gorny').value;
+    let accuracy = calculateAccuracy(originalnyTekstDolny, wpisany_tekst);
+    dokladnosc = accuracy;
+}
+    </script>
+    <link rel="stylesheet" type="text/css" href="/src/main/css/baner.css">
+    <link rel="stylesheet" type="text/css" href="/src/main/css/klawiatura.css">
+    <link rel="stylesheet" type="text/css" href="/src/main/css/klawiatura-effects.css">
+    <link rel="stylesheet" type="text/css" href="/src/main/css/zegar.css">
+    <link rel="stylesheet" type="text/css" href="/src/main/css/pole_tekstowe.css">
+    <link rel="stylesheet" type="text/css" href="/src/main/css/puste.css">
 </body>
 </html>

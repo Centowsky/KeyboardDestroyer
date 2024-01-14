@@ -1,0 +1,26 @@
+#customTextForm {
+  width: 70%;
+  margin: auto;
+}
+
+#customTextForm textarea,
+#customTextForm button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#customTextForm textarea {
+  width: 100%; /* Zmienione na 100% dla pełnej szerokości */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #333;
+  height: 50px;
+}
+
+#customTextForm textarea::placeholder {
+  color: red;
+}

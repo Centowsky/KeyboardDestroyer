@@ -1,85 +1,18 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Keyboard Destroyer</title>
+<?php
+$headerPath = __DIR__ . "/../modules/header.php";
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+if (file_exists($headerPath)) {
+    include($headerPath);
+} else {
+    echo "Błąd: Nie udało się załadować pliku header.php.";
+}
+?>
 
-
-    <link rel="stylesheet" type="text/css" href="/src/main/css/body.css">
-
-
-    <link rel="stylesheet" type="text/css" href="/src/main/css/baner.css">
-    <link rel="stylesheet" type="text/css" href="/src/main/css/cytat.css">
-    <link rel="stylesheet" type="text/css" href="/src/main/css/container.css">
-    <link rel="stylesheet" type="text/css" href="/src/main/css/newsletter.css">
-
-
-
-
-    <link rel="icon" href="/images/logo.png"> <!--  czekamy na og pliki loga -->
-
-
-    <!-- Ikonka nocy -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-
-    <!-- Ikonka light mode -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-    <!-- Ikonka loga -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
-
-
-
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@1,100&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Redacted+Script:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
-
-
-</head>
 <body>
-
-<nav class="banner">
-
-    <div id="x" class="button-container">
-        <button id="button1" class="button" onclick="window.location.href=''">
-
-
-            <!--         <image id="logo" src="/images/logo.png"></image> -->
-
-        </button>
-        
-        <button id="button3" class="button" onclick="window.location.href='learn'">Nauka</button>
-
-        <button id="button4" class="button" onclick="window.location.href='klawiatura'">Sprawdź siebie</button>
-        <?php
-            if (isset($_SESSION['user'])) {
-                // User is logged in
-                echo '<button id="button2" class="button" onclick="window.location.href=\'logout\'">Wyloguj</button>';
-            } else {
-                // User is not logged in
-                echo '<button id="button2" class="button" onclick="window.location.href=\'login_page\'">Zaloguj</button>';
-            }
-        ?>
-    </div>
-
-    <div id='trig' class="button-container">
-        <div id="mode" class="button">
-            <span id ="noc-ikonka" class="material-symbols-outlined">clear_night</span>
-            <span id ="dzien-ikonka" class="material-symbols-outlined">light_mode</span>
-        </div>
-    </div>
-
-</nav>
-
-
 <div id="cytat-zachecajacy">
     <h1>Szybkie pisanie to nasza pasja. <br>
         Z nami odkryjesz swoją klawiaturę na nowo!</h1>
-</div>s
-
-
+</div>
 
 <div id="container">
     <div class="square" id="div1">
@@ -88,7 +21,6 @@
             <a href="/klawiatura" class="description">Sprawdź swoje umiejętnosci ➡</a>
         </div>
     </div>
-
 
     <div class="square" id="div2">
         <div id="img2" class="square-inner"></div>
@@ -107,9 +39,6 @@
     <!-- Dodac atrybucje-->
 
 </div>
-
-
-
 
 <div id="onas">
     <h1>
@@ -136,9 +65,6 @@
     </p>
 </div>
 
-
-
-
 <div id="newsletter">
     <h1>
         Zapisz się do newslettera!
@@ -150,10 +76,6 @@
         Zapisz mnie!
     </button>
 </div>
-
-
-
-
 <script src="/src/main/js/mode-animation.js"></script>
 </body>
 </html>

@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
-    <link rel="stylesheet" type="text/css" href="../src/css/admin.css">
+<?php
+$headerPath = __DIR__ . "/../modules/header.php";
 
+if (file_exists($headerPath)) {
+    include($headerPath);
+} else {
+    echo "Błąd: Nie udało się załadować pliku header.php.";
+}
 
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
-
-
-</head>
+?>
 <body>
 
 
@@ -85,14 +78,14 @@
         </form>
 
         <h2 class="naglowki-h2">Wszystkie Lekcje</h2>
-
+        <div class="lessons text">
         <?php
         try {
             $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
             $query = 'SELECT * FROM lessons';
             $stmt = $db->query($query);
 
-            echo '<ul>';
+            echo '<ul class="delete-lessons">';
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '<li>';
                 echo "<b>Lekcja ID:</b> {$row['LessonID']} - <b>Module:</b> {$row['ModuleID']} - {$row['LessonName']} <b>Tekst:</b> {$row['TextContent']}";
@@ -104,7 +97,10 @@
             die('Błąd bazy danych: ' . $e->getMessage());
         }
         ?>
-        <script>
+        </div>
+        
+    </div>
+    <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const deleteLessonIcons = document.querySelectorAll('.delete-lesson');
 
@@ -141,11 +137,6 @@
                 });
             });
         </script>
-        <a id='wyloguj' href="/logout">Wyloguj</a>
-        <br>
-        <a id='->learn' href="/learn">Przejdź do Panelu Learn</a>
-        <br>
-        <a id='glowna' href="/glowna">Główna</a>
-    </div>
+        
 </body>
 </html>

@@ -9,6 +9,9 @@ switch ($request_uri) {
     case '/':
         echo renderPage('home');
         break;
+    case '/home':
+        echo renderPage('home');
+        break;
     case '/learn':
         if (!isset($_SESSION['user'])) {
             header('Location: /login_page');
