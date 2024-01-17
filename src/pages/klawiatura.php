@@ -154,11 +154,11 @@ function info() {
     dokladnosc = accuracy;
 }
     </script>
-    <link rel="stylesheet" type="text/css" href="/src/main/css/baner.css">
-    <link rel="stylesheet" type="text/css" href="/src/main/css/klawiatura.css">
-    <link rel="stylesheet" type="text/css" href="/src/main/css/klawiatura-effects.css">
-    <link rel="stylesheet" type="text/css" href="/src/main/css/zegar.css">
-    <link rel="stylesheet" type="text/css" href="/src/main/css/pole_tekstowe.css">
-    <link rel="stylesheet" type="text/css" href="/src/main/css/puste.css">
+    <link rel="stylesheet" type="text/css" href="/src/css/main/baner.css">
+    <link rel="stylesheet" type="text/css" href="/src/css/main/klawiatura.css">
+    <link rel="stylesheet" type="text/css" href="/src/css/main/klawiatura-effects.css">
+    <link rel="stylesheet" type="text/css" href="/src/css/main/zegar.css">
+    <link rel="stylesheet" type="text/css" href="/src/css/main/pole_tekstowe.css">
+    <link rel="stylesheet" type="text/css" href="/src/css/main/puste.css">
 </body>
 </html>

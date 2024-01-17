@@ -86,19 +86,10 @@ if (file_exists($headerPath)) {
             }
             else
                 echo "<p class='d_name'>0%</p>";
-            echo "<a href='/learn/usun?moduleId=" . $module['ModuleID'] . "' class='button'>Usuń postęp</a>";
+            echo "<a href='/learn/usun?moduleId=" . $module['ModuleID'] . "' class='button-del'>Usuń postęp</a>";
             echo "</div>";
         }
         ?>
-    </div>
-
-    <div id="dol">
-        <?php if ($username == "admin") echo '<a href="/admin">Panel admina</a>'?>
-        <br>
-        <a id='wyloguj-napis' href="/logout">Wyloguj</a>
-        <br>
-        <a href="/">Główna</a>
-        <!--    <h2>Naucz się szybko pisać.</h2>-->
     </div>
 
     <script>
@@ -144,7 +135,5 @@ if (file_exists($headerPath)) {
 
         }
     </script>
-
-
 </body>
 </html>

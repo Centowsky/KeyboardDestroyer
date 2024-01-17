@@ -6,7 +6,6 @@ if (file_exists($headerPath)) {
 } else {
     echo "Błąd: Nie udało się załadować pliku header.php.";
 }
-
 ?>
 <body>
 
