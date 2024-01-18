@@ -106,9 +106,14 @@ label {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  background: var(--kolor-submit);
+  background: #fff;
+  color: #000;
   cursor: pointer;
   transition: all 450ms ease-in-out;
+}
+
+.btn:hover {
+  background-color: #48248a;
 }
 
 .sparkle {
@@ -123,42 +128,37 @@ label {
   font-family: "Quicksand", sans-serif;
 }
 
-.btn:hover {
-  background: linear-gradient(0deg, #a47cf3, #683fea);
-  box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
-    inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
-    0px 0px 0px 4px rgba(255, 255, 255, 0.2), 0px 0px 180px 0px #9917ff;
-  transform: translateY(-2px);
+.btn-text {
+  color: #000;
+  font-weight: 600;
+  font-size: medium;
+  font-family: "Quicksand", sans-serif;
 }
 
-.btn:hover .text {
-  color: white;
-}
-
-.btn:hover .sparkle {
-  fill: white;
-  transform: scale(1.2);
-}
-
-#wyloguj,
-#-\>learn,
-#glowna {
-  font-size: 1.5em;
-  color: #07f514;
-}
-
-.lessons {
+.btn-text:hover {
   color: #fff;
 }
 
-.delete-lessons {
-  list-style-type: none;
-  font-size: 1.1rem;
+.modules-list {
+  font-size: 1.5rem;
+  color: #fff;
 }
 
-.delete-lesson {
-  color: red;
-  margin-left: 0.5rem;
+.lesson-item-list {
+  margin-left: 5rem;
+}
+
+.modules-list {
+  margin-bottom: 5rem;
+}
+
+.delete-lesson-btn,
+.show-text-content-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .admin-menu {

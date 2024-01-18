@@ -28,6 +28,22 @@ switch ($request_uri) {
             header('Location: /learn');
         }
         break;
+    case '/admin/modules':
+        //session_start();
+        if (isset($_SESSION['user']) && $_SESSION['user'] === 'admin') {
+            echo renderPage('admin/modules');
+        } else {
+            header('Location: /learn');
+        }
+        break;
+    case '/admin/lessons':
+        //session_start();
+        if (isset($_SESSION['user']) && $_SESSION['user'] === 'admin') {
+            echo renderPage('admin/lessons');
+        } else {
+            header('Location: /learn');
+        }
+        break;
     case '/login':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = htmlspecialchars($_POST['username'] ?? '');
@@ -65,13 +81,15 @@ switch ($request_uri) {
                 $difficultyLevel = $_POST['difficultyLevel'];
 
                 if (saveModuleToDatabase($moduleName, $difficultyLevel)) {
-                    header('Location: /admin');
+                    header('Location: /admin/modules');
                 } else {
                     echo "Błąd podczas dodawania modułu.";
                 }
             }
         }
         break;
+
+
     case '/admin/add_lesson':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['moduleId'], $_POST['lessonName'], $_POST['textContent'])) {
@@ -80,7 +98,7 @@ switch ($request_uri) {
                 $textContent = $_POST['textContent'];
 
                 if (saveLessonToDatabase($moduleId, $lessonName, $textContent)) {
-                    header('Location: /admin');
+                    header('Location: /admin/lessons');
                 } else {
                     echo "Błąd podczas dodawania modułu.";
                 }
@@ -122,7 +140,7 @@ switch ($request_uri) {
         }
         break;
     default:
-        if (preg_match('/^\/learn\/usun\?moduleId=\d+$/', $request_uri)){
+        if (preg_match('/^\/learn\/usun\?moduleId=\d+$/', $request_uri)) {
             if (isset($_GET['moduleId'])) {
                 $moduleId = $_GET['moduleId'];
                 if (usun($moduleId)) {
@@ -132,13 +150,14 @@ switch ($request_uri) {
                     echo "Błąd podczas resetowania postępu.";
                 }
             }
+        } else {
+            echo renderPage('logowanie');
         }
-        else{
-            echo renderPage('logowanie');}
         break;
 }
 
-function authenticateUser($username, $password) {
+function authenticateUser($username, $password)
+{
     try {
         $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
 
@@ -156,12 +175,13 @@ function authenticateUser($username, $password) {
     }
 }
 
-function usun($id){
+function usun($id)
+{
     try {
         $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
         // Zapytanie DELETE z INNER JOIN
         $query = $db->prepare('DELETE us FROM userstatistics AS us INNER JOIN lessons AS l ON us.LessonID = l.LessonID WHERE l.ModuleID = :id');
-        $query->bindParam(':id',$id);
+        $query->bindParam(':id', $id);
 
         // Wykonaj zapytanie
         return $query->execute();
@@ -169,9 +189,11 @@ function usun($id){
 
     } catch (PDOException $e) {
         die('Błąd bazy danych: ' . $e->getMessage());
-    }}
+    }
+}
 
-function saveModuleToDatabase($moduleName, $difficultyLevel) {
+function saveModuleToDatabase($moduleName, $difficultyLevel)
+{
     try {
         $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
 
@@ -186,7 +208,8 @@ function saveModuleToDatabase($moduleName, $difficultyLevel) {
     }
 }
 
-function saveLessonToDatabase($moduleId, $lessonName, $textContent) {
+function saveLessonToDatabase($moduleId, $lessonName, $textContent)
+{
     try {
         $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
 
@@ -201,7 +224,8 @@ function saveLessonToDatabase($moduleId, $lessonName, $textContent) {
         die('Błąd bazy danych: ' . $e->getMessage());
     }
 }
-function modifyLessonInDatabase($lessonId, $newTextContent) {
+function modifyLessonInDatabase($lessonId, $newTextContent)
+{
     try {
         $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
 
@@ -215,7 +239,8 @@ function modifyLessonInDatabase($lessonId, $newTextContent) {
         die('Błąd bazy danych: ' . $e->getMessage());
     }
 }
-function deleteLessonFromDatabase($lessonId) {
+function deleteLessonFromDatabase($lessonId)
+{
     try {
         $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
 
@@ -229,7 +254,8 @@ function deleteLessonFromDatabase($lessonId) {
     }
 }
 
-function getModulesFromDatabase() {
+function getModulesFromDatabase()
+{
     try {
         $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
 
