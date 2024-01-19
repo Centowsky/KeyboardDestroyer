@@ -10,14 +10,28 @@
     display: grid;
     place-items: center;
     margin-top: 10px;
+
+    animation: pulseAnimation 2s infinite alternate; /* Add animation property */
 }
 
-#timer #czas{
+#timer #czas {
     color: white;
     font-size: 2em;
 }
 
-#timer #accuracy{
+#timer #accuracy {
     color: white;
     font-size: 1.5em;
+}
+
+@keyframes pulseAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

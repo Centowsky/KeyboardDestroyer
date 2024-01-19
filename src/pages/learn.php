@@ -11,7 +11,8 @@ if (file_exists($headerPath)) {
 <body>
 
 <div id="wejscie-div">
-    <h1>Witaj, <i class="text-primary"><?php echo htmlspecialchars($username); ?></i> !</h1>
+    <h1 style="font-family: "Quicksand", sans-serif">Witaj, <i class="text-primary"><?php echo htmlspecialchars($username); ?></i> !</h1>
+    <br>
 
     <h3>Wybierz lekcję z dostępnych modułów</h3>
 
@@ -86,7 +87,7 @@ if (file_exists($headerPath)) {
             }
             else
                 echo "<p class='d_name'>0%</p>";
-            echo "<a href='/learn/usun?moduleId=" . $module['ModuleID'] . "' class='button-del'>Usuń postęp</a>";
+            echo "<a href='/learn/usun?moduleId=" . $module['ModuleID'] . "' class='button-del' style='font-size: 0.8em;display: flex; align-items: center; justify-content: center; '>Resetuj</a>";
             echo "</div>";
         }
         ?>

@@ -1,5 +1,7 @@
 :root{
-    --kolor-tla-inputu: rgba(191, 192, 187, 0.74);
+    --kolor-tla-inputu: rgba(0, 0, 0, 0.7);
+
+
         --kolor-tla-inputu-darkmode: rgba(191, 192, 187, 0.74);
         --kolor-tla-inputu-lightmode: rgba(128, 133, 128, 0.74);
 

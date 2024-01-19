@@ -9,26 +9,62 @@ if (file_exists($headerPath)) {
 ?>
 
 
-<form id="customTextForm">
-    <textarea id="customText" rows="6" name="customText" placeholder="Możesz też napisać swój własny tekst"></textarea><br>
-    <button type="button" onclick="updateCustomText()">Aktualizuj tekst</button>
-</form>
-
-  <div class="pole_tekstowe_do_pisania">
-        <label>
-            <textarea id="input_gorny" class="input_do_pisania" type="text" spellcheck="false" oninput="sprawdzTekst()"></textarea>
-            <textarea id="input_dolny" class="input_do_pisania" type="text" placeholder="" disabled></textarea>
-        </label>
-    </div>
 
 
-    <div id="timer">
+
+<div class="pole_tekstowe_do_pisania" id="pisanie">
+    <label>
+        <textarea id="input_gorny" class="input_do_pisania" type="text" spellcheck="false" oninput="sprawdzTekst()"></textarea>
+        <textarea id="input_dolny" class="input_do_pisania" type="text" placeholder="" disabled></textarea>
+    </label>
+</div>
+
+
+
+<div id="timer"
+         style="
+        display: none;
+        background-color: rgba(0,0,0,0.79);
+        padding: 10px;
+        position: absolute;
+        top:46%;
+        margin-left: 250px;
+
+">
+
     <p id="czas"></p>
     <p id="accuracy"></p>
 </div>
 
+<form id="customTextForm" style="display: none;">
+    <textarea spellcheck="false" id="customText" style='width: 70%; color=rgba(227,14,14,0.64); background-color: rgba(80,77,77,0.64); font-size: 1.5em;' rows="6" name="customText" placeholder="Wprowadź tekst własny"></textarea>
+    <br>
+    <button type="button" style='margin-bottom: 100px;' onclick="updateCustomText()">Aktualizuj tekst</button>
+</form>
 
-<div class="keyboard">
+
+
+
+<button type="button" id="wlasny-text" class="btn-custom"
+        style="padding: 10px 20px;
+         font-size: 16px;
+            border: none;
+            border-radius: 5px;
+             cursor: pointer;
+            position: relative;
+                  top: -340px;
+                  left: 20px;"
+        onclick="toggleCustomTextForm()">
+    Własny tekst</button>
+
+
+
+
+
+
+
+
+<div class="keyboard" style="margin-bottom: 100px;">
     <button data-key="Escape">esc</button>
     <button data-key="1">1</button>
     <button data-key="2">2</button>
@@ -119,10 +155,19 @@ if (file_exists($headerPath)) {
     <button data-key="ArrowDown">⬇</button>
     <button data-key="ArrowRight">➡</button>
 </div>
+
+<div style="color: transparent;">d</div>
+
+
+
+
+
+
 <script src="/src/main/js/mode-animation.js"></script>
 <script src="/src/main/js/click-animation.js"></script>
 <script src="/src/main/js/podmiana-placeholdera.js"></script><script>
         function updateCustomText() {
+    let customTextForm = document.getElementById("customTextForm");
     const customText = document.getElementById('customText').value;
     const inputGorny = document.getElementById('input_gorny');
     const inputDolny = document.getElementById('input_dolny');
@@ -140,6 +185,7 @@ if (file_exists($headerPath)) {
     if (customText.trim() !== '') {
         inputDolny.placeholder = customText;
         originalnyTekstDolny = customText;
+
     } else {
         // Jeśli pole tekstowe jest puste, zresetuj też inputDolny
         inputDolny.placeholder = '';
@@ -147,12 +193,37 @@ if (file_exists($headerPath)) {
 
     // Zresetuj pole tekstowe input_gorny
     inputGorny.value = '';
+
+    customTextForm.style.display='none';
+
+
 }
+
+
 function info() {
     let wpisany_tekst = document.getElementById('input_gorny').value;
     let accuracy = calculateAccuracy(originalnyTekstDolny, wpisany_tekst);
     dokladnosc = accuracy;
+    let info = document.getElementById('timer');
+    info.style.display='initial';
 }
+
+function toggleCustomTextForm() {
+    let customTextForm = document.getElementById("customTextForm");
+    let wlasny = document.getElementById("wlasny-text");
+
+    if (customTextForm.style.display === "none") {
+        customTextForm.style.display = "initial";
+        wlasny.style.display = "none";
+
+
+    } else {
+        customTextForm.style.display = "none";
+    }
+}
+
+
+
     </script>
     <link rel="stylesheet" type="text/css" href="/src/css/main/baner.css">
     <link rel="stylesheet" type="text/css" href="/src/css/main/klawiatura.css">
@@ -160,5 +231,6 @@ function info() {
     <link rel="stylesheet" type="text/css" href="/src/css/main/zegar.css">
     <link rel="stylesheet" type="text/css" href="/src/css/main/pole_tekstowe.css">
     <link rel="stylesheet" type="text/css" href="/src/css/main/puste.css">
+
 </body>
 </html>

@@ -85,8 +85,26 @@ h1 {
   width: fit-content;
 }
 
+@keyframes pulseAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 #mainBlock {
   transform: scale(1.1);
+  animation: pulseAnimation 2s infinite alternate;
+}
+
+#mainBlock:hover {
+  animation-play-state: paused;
+  background-color: rgba(0, 0, 0, 0.53);
 }
 
 #arrows {
@@ -108,22 +126,44 @@ h1 {
 }
 
 .button-del {
-  border-radius: 2rem;
-  background-color: #fff;
-  width: 75%;
-  font-size: 1rem;
-  text-align: center;
-  color: #000;
-  margin: 0.5rem auto;
-  font-weight: bold;
+  line-height: 1;
   text-decoration: none;
-  transition: 1s;
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  background-color: #fff;
+  color: #000;
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  padding-left: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s, width 1s;
   border: 2px solid transparent;
+  width: 75%;
+  margin: 0.5rem auto;
+  scale: 0.8;
 }
 
 .button-del:hover {
-  width: 85%;
-  background-color: #1900ff;
+  background-color: rgba(225, 11, 11, 0.78);
   color: #fff;
+  /*width: 85%;*/
   border: 2px solid #fff;
+  font-weight: bold;
 }
+
+.button-del .button__icon-wrapper {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  color: #000;
+  background-color: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+

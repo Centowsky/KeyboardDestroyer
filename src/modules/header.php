@@ -19,6 +19,7 @@ $currentUrl = $_SERVER['REQUEST_URI'];
     <title>Keyboard Destroyer</title>
     <link rel="icon" href="/images/logo.png"> <!--  czekamy na og pliki loga -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" type="text/css" href="<?php echo $cssFilePath; ?>">
     <link rel="stylesheet" type="text/css" href="/src/css/header.css">
     <!-- <link rel="stylesheet" type="text/css" href="/src/css/main/body.css">
@@ -27,11 +28,13 @@ $currentUrl = $_SERVER['REQUEST_URI'];
     <link rel="stylesheet" type="text/css" href="/src/css/main/container.css">
     <link rel="stylesheet" type="text/css" href="/src/css/main/newsletter.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@1,100&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Redacted+Script:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+
 </head>
 <?php
 if (strpos($currentUrl, '/login_page') === false) {

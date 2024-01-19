@@ -134,3 +134,15 @@
 .keyboard button:focus {
     outline: none;
 }
+
+.highlight-red{
+    border: 5px solid rgba(255, 0, 0, 0.6);
+}
+
+.highlight-green{
+    border: 5px solid rgb(7, 245, 20);
+}
+
+.highlight-white{
+    border: 6px solid rgb(255, 255, 255);
+}

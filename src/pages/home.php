@@ -33,7 +33,7 @@ if (file_exists($headerPath)) {
     <div class="square" id="div3">
         <div id="img3" class="square-inner"></div>
         <div class="description-container">
-            <a href="home.html" class="description">Porady i wskazówki ➡</a>
+            <a href="https://www.tonerpartner.pl/artykuly/jak-nauczyc-sie-pisania-bezwzrokowego-na-klawiaturze-wskazowki-dotyczace-programow-i-procedur-28804pl39332/" class="description">Porady i wskazówki ➡</a>
         </div>
     </div>
     <!-- Dodac atrybucje-->
@@ -72,7 +72,7 @@ if (file_exists($headerPath)) {
     <label>
         <input type="email" placeholder="wpisz email"></input>
     </label>
-    <button id="button7" class="button" onclick="window.location.href=''">
+    <button id="button7" class="button" onclick="window.location.href='/home'">
         Zapisz mnie!
     </button>
 </div>

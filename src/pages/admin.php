@@ -14,11 +14,14 @@ if (file_exists($headerPath)) {
     <h1 id="admin-napis" class="center-naglowki">PANEL ADMINISTRATORA</h1>
 
     <div id="background">
-        <ul class="admin-menu">
+        <ul class="admin-menu" style="margin-left: 25%">
             <li class="admin-menu-item"><a href="/admin">Powrót</a></li>
             <li class="admin-menu-item"><a href="/admin/modules">Moduły</a></li>
             <li class="admin-menu-item"><a href="/admin/lessons">Lekcje</a></li>
         </ul>
+        <br>
+        <br>
+        <hr style="margin-bottom: 15px">
 
 
 
@@ -41,7 +44,7 @@ if (file_exists($headerPath)) {
 
                 <span class="text">Modyfikuj Lekcję</span>
             </button>
-
+            <hr style="margin-top: 15px;margin-bottom: 15px">
         </form>
 
         <h2 class="naglowki-h2">Wszystkie Lekcje</h2>

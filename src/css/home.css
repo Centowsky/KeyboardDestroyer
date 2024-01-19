@@ -4,9 +4,9 @@
 
   --kolor-tla-kart: rgba(222, 212, 212, 0.68);
 
-  --kolor-tla-deskrypcji: rgb(234, 133, 3);
+  --kolor-tla-deskrypcji: rgba(26, 26, 25, 0.7);
 
-  --kolor-tekstu-deskrypcji: black;
+  --kolor-tekstu-deskrypcji: #ffffff;
 
   --kolor-czcionki-onas-h1: #ffffff;
 
@@ -14,7 +14,7 @@
 
   --kolor-czcionki-onas-p: #ff0000;
 
-  --kolor-shadow-onas: rgba(48, 0, 255, 0.37);
+  --kolor-shadow-onas: rgba(23, 22, 22, 0.37);
 
   /* Nowe zmienne dla sekcji "Newsletter" */
 
@@ -144,8 +144,9 @@ a {
 
 #onas {
   border: 1px solid transparent;
-  width: 700px;
-  height: 200px;
+  width: 750px;
+  height: 300px;
+
   margin: 0 auto 50px;
   border-radius: 15px;
   background-color: transparent;
@@ -156,8 +157,9 @@ a {
   box-shadow: 0 0 40px 20px var(--kolor-shadow-onas);
   transition: transform 0.3s ease-in-out;
 
+
   &:hover {
-    background-color: rgba(48, 0, 255, 0.37);
+    background-color: rgba(12, 12, 12, 0.5);
     transition: 1.3s ease;
   }
 }
@@ -165,17 +167,20 @@ a {
 #onas h1 {
   position: relative;
   color: var(--kolor-czcionki-onas-h1);
-  background-color: rgba(52, 13, 226, 0.37);
+  background-color: transparent;
   margin-top: 25px;
 }
 
 #onas p {
-  background-color: rgba(52, 13, 226, 0.37);
+  background-color: transparent;
   margin-bottom: 20px;
   position: relative;
   color: #fff;
   padding: 10px;
 }
+
+
+
 
 #newsletter {
   width: 500px;
