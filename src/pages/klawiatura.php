@@ -10,8 +10,6 @@ if (file_exists($headerPath)) {
 
 
 
-
-
 <div class="pole_tekstowe_do_pisania" id="pisanie">
     <label>
         <textarea id="input_gorny" class="input_do_pisania" type="text" spellcheck="false" oninput="sprawdzTekst()"></textarea>
@@ -58,6 +56,9 @@ if (file_exists($headerPath)) {
     Własny tekst</button>
 
 
+<div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
 
 
 
@@ -161,7 +162,7 @@ if (file_exists($headerPath)) {
 
 
 
-
+<script src="/src/main/js/predkosc.js"></script>
 
 <script src="/src/main/js/mode-animation.js"></script>
 <script src="/src/main/js/click-animation.js"></script>
@@ -231,6 +232,8 @@ function toggleCustomTextForm() {
     <link rel="stylesheet" type="text/css" href="/src/css/main/zegar.css">
     <link rel="stylesheet" type="text/css" href="/src/css/main/pole_tekstowe.css">
     <link rel="stylesheet" type="text/css" href="/src/css/main/puste.css">
+
+    <link rel="stylesheet" type="text/css" href="/src/css/main/predkos.css">
 
 </body>
 </html>

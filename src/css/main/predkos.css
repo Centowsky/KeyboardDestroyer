@@ -1,0 +1,20 @@
+
+.progress-bar-container {
+    width: 300px;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(to right, #4caf50, #ff0000);
+    transition: width 0.2s ease;
+}
+#progressBar {
+
+    transition: width 1s linear;
+}
