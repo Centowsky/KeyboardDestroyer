@@ -14,6 +14,7 @@ $currentUrl = $_SERVER['REQUEST_URI'];
 ?>
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <title>Keyboard Destroyer</title>
@@ -29,7 +30,8 @@ $currentUrl = $_SERVER['REQUEST_URI'];
     <link rel="stylesheet" type="text/css" href="/src/css/main/newsletter.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@1,100&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Redacted+Script:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
@@ -43,7 +45,10 @@ if (strpos($currentUrl, '/login_page') === false) {
         <div id="x" class="button-container">
             <button id="button3" class="button" onclick="window.location.href='home'">Home</button>
             <button id="button3" class="button" onclick="window.location.href='learn'">Nauka</button>
-            <button id="button4" class="button" onclick="window.location.href='klawiatura'">Sprawdź siebie</button>
+            <button id="button4" class="button"
+                onclick="window.location.href='klawiatura'; localStorage.setItem('selectedLearning', 'true');">Sprawdź
+                siebie</button>
+
             <?php
             if (isset($_SESSION['user'])) {
                 echo '<button id="button2" class="button" disabled>Zalogowany jako: ' . $username . '</button>';
@@ -70,7 +75,6 @@ if (strpos($currentUrl, '/login_page') === false) {
             </div>
         </div> -->
     </nav>
-<?php
+    <?php
 }
 ?>
-

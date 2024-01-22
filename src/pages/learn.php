@@ -8,15 +8,18 @@ if (file_exists($headerPath)) {
 }
 
 ?>
+
 <body>
 
-<div id="wejscie-div">
-    <h1 style="font-family: "Quicksand", sans-serif">Witaj, <i class="text-primary"><?php echo htmlspecialchars($username); ?></i> !</h1>
-    <br>
+    <div id="wejscie-div">
+        <h1 style="font-family: Quicksand , sans-serif">Witaj, <i class="text-primary">
+                <?php echo htmlspecialchars($username); ?>
+            </i> !</h1>
+        <br>
 
-    <h3>Wybierz lekcję z dostępnych modułów</h3>
+        <h3>Wybierz lekcję z dostępnych modułów</h3>
 
-</div>
+    </div>
 
     <div id="arrows">
         <div id="leftArrow" class="arrow" onclick="navigate(-1)">←</div>
@@ -25,7 +28,8 @@ if (file_exists($headerPath)) {
 
     <div id="container-m">
         <?php
-        function getUserStatFromDatabase() {
+        function getUserStatFromDatabase()
+        {
             try {
                 $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
 
@@ -52,7 +56,6 @@ if (file_exists($headerPath)) {
                             'ModulesNumberOfLessons' => $modulesNumberOfLessons,
                         ];
                     }
-
                 }
 
                 return $modules_2;
@@ -60,9 +63,28 @@ if (file_exists($headerPath)) {
                 die('Błąd bazy danych: ' . $e->getMessage());
             }
         }
+
+        function getLessonNames($moduleId)
+        {
+            try {
+                $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
+
+                $query = 'SELECT LessonID, LessonName FROM lessons WHERE ModuleID = :moduleId';
+                $stmt = $db->prepare($query);
+                $stmt->bindParam(':moduleId', $moduleId, PDO::PARAM_INT);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                return $result;
+            } catch (PDOException $e) {
+                die('Błąd bazy danych: ' . $e->getMessage());
+            }
+        }
+
         $modules_2 = getUserStatFromDatabase();
         $flaga = 0;
         $procentUkonczenia = 0;
+
         foreach ($modules as $module) {
             $liczbalekcji = sizeof($module['Lessons']);
             foreach ($modules_2 as $module_2) {
@@ -75,18 +97,32 @@ if (file_exists($headerPath)) {
                     }
                 }
             }
+
             echo "<div class='block' id='hidden'>";
             echo "<p class='m_name'>{$module['ModuleName']}</p>";
             echo "<p class='d_name'>Difficulty Level: {$module['DifficultyLevel']}</p>";
-
             echo "<p class='d_name'>Number of lessons: {$liczbalekcji}</p>";
-            if ($flaga = 1) {
+
+            if ($flaga == 1) {
                 echo "<p class='d_name'>{$procentUkonczenia}%</p>";
                 $flaga = 0;
                 $procentUkonczenia = 0;
-            }
-            else
+            } else {
                 echo "<p class='d_name'>0%</p>";
+            }
+
+            // Pobierz nazwy lekcji
+            $lessonNames = getLessonNames($module['ModuleID']);
+            ?>
+
+            <ul class='lesson-list'>
+                <?php foreach ($lessonNames as $lesson): ?>
+                    <li onclick='saveAndGoToLesson(<?php echo $lesson['LessonID']; ?>)'>
+                        <?php echo $lesson['LessonName']; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <?php
             echo "<a href='/learn/usun?moduleId=" . $module['ModuleID'] . "' class='button-del' style='font-size: 0.8em;display: flex; align-items: center; justify-content: center; '>Resetuj</a>";
             echo "</div>";
         }
@@ -94,14 +130,24 @@ if (file_exists($headerPath)) {
     </div>
 
     <script>
+        function saveAndGoToLesson(lessonId) {
+            localStorage.setItem('selectedLesson', lessonId);
+            localStorage.setItem('selectedLearning', false);
+            window.location.href = '/klawiatura';
+        }
+
+    </script>
+
+    <script>
+
+
         let currentIndex = 0;
         let cont = document.getElementById("container-m")
         let maxIndex = cont.children.length;
         let divNumber
 
         document.getElementById("hidden").setAttribute("id", "mainBlock");
-        for (let i = 1; i <= 4; i++)
-        {
+        for (let i = 1; i <= 4; i++) {
             cont.children[i].removeAttribute('id');
         }
 
@@ -115,9 +161,8 @@ if (file_exists($headerPath)) {
             }
 
             let cont = document.getElementById("container-m")
-            if (direction > 0 && currentIndex!=maxIndex)
-            {
-                if (currentIndex+4 < maxIndex) {
+            if (direction > 0 && currentIndex != maxIndex) {
+                if (currentIndex + 4 < maxIndex) {
                     document.getElementById("hidden").removeAttribute('id');
                     document.getElementById("mainBlock").setAttribute("id", "hidden");
                     cont.children[currentIndex].setAttribute("id", "mainBlock");
@@ -126,15 +171,21 @@ if (file_exists($headerPath)) {
                     cont.children[currentIndex].setAttribute("id", "mainBlock");
                 }
             }
-            else if (currentIndex!=maxIndex)
-            {
+            else if (currentIndex != maxIndex) {
                 document.getElementById("mainBlock").removeAttribute('id');
                 cont.children[currentIndex].setAttribute("id", "mainBlock");
-                cont.children[currentIndex+5].setAttribute("id", "hidden");
+                cont.children[currentIndex + 5].setAttribute("id", "hidden");
             }
 
 
         }
+
+        let urlParams = new URLSearchParams(window.location.search);
+        let lessonIdParam = urlParams.get('id_lesson');
+        if (lessonIdParam) {
+            goToLesson(lessonIdParam);
+        }
     </script>
 </body>
+
 </html>
