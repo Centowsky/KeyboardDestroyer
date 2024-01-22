@@ -72,12 +72,16 @@ $conn->close();
     <h1 id="admin-napis" class="center-naglowki">PANEL ADMINISTRATORA</h1>
 
     <div id="background">
-
+        <ul class="admin-menu">
+            <li class="admin-menu-item"><a href="/admin">Powrót</a></li>
+            <li class="admin-menu-item"><a href="/admin/modules">Moduły</a></li>
+            <li class="admin-menu-item"><a href="/admin/lessons">Lekcje</a></li>
+        </ul>
         <h2 class="naglowki-h2">Lista modułów</h2>
         <ol class="modules-list">
             <?php foreach ($existingModules as $moduleData): ?>
                 <li class="modules-list-element">
-                    <?= $moduleData['moduleName'] ?>
+                    <?= $moduleData['moduleName'] . " (ID: " . $moduleData['moduleId'] . ")" ?>
 
 
                     <?php if (!empty($moduleData['lessons'])): ?>
@@ -105,7 +109,7 @@ $conn->close();
         <h2 class="naglowki-h2">Dodawanie Lekcji</h2>
         <!-- Add a form for adding lessons -->
         <form method="post" action="/admin/add_lesson">
-            <label for="moduleId">Numer modułu:</label>
+            <label for="moduleId">ID modułu:</label>
             <input class="form-element" type="text" id="moduleId" name="moduleId" required>
 
             <label for="lessonName">Nazwa Lekcji:</label>

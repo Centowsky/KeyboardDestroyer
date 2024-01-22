@@ -50,6 +50,7 @@ body {
   font-size: 16px;
   width: 100%;
   border: 2px solid rgba(255, 255, 255, 0.17);
+  color: #fff;
 
   background: linear-gradient(
     43deg,
@@ -76,6 +77,7 @@ body {
 .form-element[type="textarea"] {
   height: 150px;
   resize: vertical;
+  color: #fff;
 }
 
 label {
@@ -184,4 +186,29 @@ label {
 .admin-menu-item a:hover {
   color: #07f514;
   border-bottom: 2px solid #ffffff;
+}
+
+/* Wstaw to do swojego arkusza stylów CSS lub bezpośrednio w nagłówek HTML */
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper select {
+  color: white;
+  background-color: #333;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.select-wrapper select option {
+  color: black;
+  background-color: #fff;
+}
+
+.select-wrapper::after {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: white;
 }

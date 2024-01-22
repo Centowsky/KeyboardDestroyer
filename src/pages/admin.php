@@ -1,11 +1,69 @@
 <?php
 $headerPath = __DIR__ . "/../modules/header.php";
+$connPath = __DIR__ . "/../modules/conn.php";
 
 if (file_exists($headerPath)) {
     include($headerPath);
 } else {
     echo "Błąd: Nie udało się załadować pliku header.php.";
 }
+
+if (file_exists($connPath)) {
+    include($connPath);
+} else {
+    echo "Błąd: Nie udało się załadować pliku conn.php.";
+}
+$conn = new mysqli("localhost", "root", "", "keyboard_destroyer");
+
+if (!$conn) {
+    die("Błąd połączenia z bazą danych: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["modifyLesson"])) {
+    $lessonIdToModify = $_POST["lessonId"];
+    $newTextContent = $_POST["newTextContent"];
+
+    // Zaktualizuj tekst lekcji
+    $updateLessonSql = "UPDATE lessons SET TextContent = '$newTextContent' WHERE LessonID = $lessonIdToModify";
+
+    if ($conn->query($updateLessonSql) === TRUE) {
+        echo "Lekcja została zaktualizowana.";
+    } else {
+        echo "Błąd podczas aktualizacji lekcji: " . $conn->error;
+    }
+}
+
+$sql = "SELECT * FROM lessonmodules";
+$result = $conn->query($sql);
+
+$existingModules = array();
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $moduleId = $row['ModuleID'];
+        $moduleName = $row['ModuleName'];
+
+        $lessonsSql = "SELECT * FROM lessons WHERE ModuleID = $moduleId";
+        $lessonsResult = $conn->query($lessonsSql);
+
+        $moduleData = array(
+            'moduleId' => $moduleId,
+            'moduleName' => $moduleName,
+            'lessons' => array()
+        );
+
+        if ($lessonsResult && $lessonsResult->num_rows > 0) {
+            while ($lessonRow = $lessonsResult->fetch_assoc()) {
+                $moduleData['lessons'][] = $lessonRow;
+            }
+        }
+
+        $existingModules[] = $moduleData;
+    }
+} else {
+    echo "Brak modułów w bazie danych.";
+}
+
+$conn->close();
 ?>
 
 <body>
@@ -27,8 +85,18 @@ if (file_exists($headerPath)) {
 
         <h2 class="naglowki-h2">Modyfikowanie Lekcji</h2>
         <form method="post" action="/admin/modify_lesson">
-            <label for="lessonId">ID Lekcji:</label>
-            <input class="form-element" type="text" id="lessonId" name="lessonId" required>
+            <div class="select-wrapper">
+                <label for="lessonId" class="white-text">ID Lekcji:</label>
+                <select class="form-element white-text" id="lessonId" name="lessonId" required>
+                    <?php foreach ($existingModules as $module): ?>
+                        <?php foreach ($module['lessons'] as $lesson): ?>
+                            <option value="<?php echo $lesson['LessonID']; ?>">
+                                <?php echo "(ID: " . $lesson['LessonID'] . ') - ' . $lesson['LessonName'] . ' (' . $module['moduleName'] . ') - ' . $lesson['TextContent']; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
             <label for="newTextContent">Nowy Tekst Lekcji:</label>
             <textarea class="form-element" id="newTextContent" name="newTextContent" required></textarea>
@@ -44,30 +112,7 @@ if (file_exists($headerPath)) {
 
                 <span class="text">Modyfikuj Lekcję</span>
             </button>
-            <hr style="margin-top: 15px;margin-bottom: 15px">
         </form>
-
-        <h2 class="naglowki-h2">Wszystkie Lekcje</h2>
-        <div class="lessons text">
-            <?php
-            try {
-                $db = new PDO('mysql:host=localhost;dbname=keyboard_destroyer', 'root', '');
-                $query = 'SELECT * FROM lessons';
-                $stmt = $db->query($query);
-
-                echo '<ul class="delete-lessons">';
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<li>';
-                    echo "<b>Lekcja ID:</b> {$row['LessonID']} - <b>Module:</b> {$row['ModuleID']} - {$row['LessonName']} <b>Tekst:</b> {$row['TextContent']}";
-                    echo '<i class="fas fa-trash delete-lesson" data-lesson-id="' . $row['LessonID'] . '"></i>';
-                    echo '</li>';
-                }
-                echo '</ul>';
-            } catch (PDOException $e) {
-                die('Błąd bazy danych: ' . $e->getMessage());
-            }
-            ?>
-        </div>
 
     </div>
     <script>
