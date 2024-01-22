@@ -7,7 +7,59 @@ if (file_exists($headerPath)) {
     echo "Błąd: Nie udało się załadować pliku header.php.";
 }
 ?>
+<form id="keybordSettings" style="display: none;">
+    <div id="keyboardSoundOptions" >
+        <label for="keyboardSound">Dźwięki klawiatury:</label>
+        <select id="keyboardSound" name="keyboardSound">
+            <option value="brak">brak</option>
+            <option value="keystroke1">Dźwięk 1</option>
+            <option value="keystroke2">Dźwięk 2</option>
+            <option value="duck">kaczka</option>
+        </select>
+    </div>
+    <div id="kolor" >
+        <label for="kolork">motyw:</label>
+        <select id="kolorki" name="kolorki">
+            <option value="brak">brak</option>
+            <option value="pink">pink</option>
+            <option value="blue">blue</option>
+            <option value="stars">gwiazdy</option>
+            <option value="krajobraz">krajobraz</option>
+            <option value="flowers">kwiaty</option>
+            <option value="duck">kaczki</option>
+        </select>
+    </div>
+    <div id="czcionka" >
+        <label for="fonts">czcionka:</label>
+        <select onchange="font(this)">
+            <option>Georgia</option>
+            <option>Palatino Linotype</option>
+            <option>Book Antiqua</option>
+            <option>Times New Roman</option>
+            <option >Arial</option>
+            <option>'Sevillana',cursive</option>
+            <option>'Lemon', serif</option>
+            <option>Impact</option>
+            <option>Lucida Sans Unicode</option>
+            <option>Tahoma</option>
+            <option>Verdana</option>
+            <option>Courier New</option>
+            <option >'Grape Nuts',cursive</option>
+        </select>
+    </div>
+    <div id="kolorCzcionki">
+        <label for="colors">Kolor czcionki:</label>
+        <select onchange="changeColor(this)">
+            <option value="white">Biały</option>
+            <option value="black">Czarny</option>
+            <option value="red">Czerwony</option>
+            <option value="blue">Niebieski</option>
+            <option value="green">Zielony</option>
+            <option value="purple">Fioletowy</option>
+        </select>
+    </div>
 
+</form>
 
 
 <div class="pole_tekstowe_do_pisania" id="pisanie">
@@ -55,6 +107,18 @@ if (file_exists($headerPath)) {
         onclick="toggleCustomTextForm()">
     Własny tekst</button>
 
+<button type="button" id="ustawienia" class="btn-custom"
+        style="padding: 10px 20px;
+               font-size: 16px;
+               border: none;
+               border-radius: 5px;
+               cursor: pointer;
+               position: relative;
+               top: -340px;
+               right:  20px;"
+        onclick="toggleSettings()">
+    Ustawienia</button>
+
 
 <div class="progress-bar-container">
     <div class="progress-bar" id="progressBar"></div>
@@ -65,7 +129,7 @@ if (file_exists($headerPath)) {
 
 
 
-<div class="keyboard" style="margin-bottom: 100px;">
+<div class="keyboard" id="kk" style="margin-bottom: 100px;">
     <button data-key="Escape">esc</button>
     <button data-key="1">1</button>
     <button data-key="2">2</button>
@@ -220,6 +284,17 @@ function toggleCustomTextForm() {
 
     } else {
         customTextForm.style.display = "none";
+    }
+}
+
+function toggleSettings(){
+    let settingForm = document.getElementById("keybordSettings");
+
+    if (settingForm.style.display === "none") {
+        settingForm.style.display = "initial";
+
+    } else {
+        settingForm.style.display = "none";
     }
 }
 

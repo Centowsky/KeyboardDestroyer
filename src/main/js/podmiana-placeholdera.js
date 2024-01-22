@@ -161,8 +161,22 @@ document.addEventListener('keydown', function(event) {
 
     const button = document.querySelector(`button[data-key="${pressedKey}"]`); // bo zmieniamy styl wcisnietego
     button.classList.remove('highlight-white');
+    const selectedSound = document.getElementById('keyboardSound').value;
+    let sound;
+
+    if (selectedSound !== 'none') {
+        if(selectedSound==="brak"){
+
+        }
+        else{
+            const soundPath = '/src/sounds/' + selectedSound + '.mp3';
+            sound = new Audio(soundPath);}
+    }
+
 
     if (button) {
+        if(sound){
+            sound.play();}
         // console.log("button: ", button)
         // console.log("pressedKey: ", pressedKey)
         // console.log("key_to_press: ", key_to_press)
@@ -303,8 +317,34 @@ document.addEventListener('keydown', function(event) {
 
 
 
+document.getElementById('kolorki').addEventListener('change', function() {
+    var selectedColorVar = this.value;
+    if(selectedColorVar==='stars'||selectedColorVar==='krajobraz'||selectedColorVar==='flowers'||selectedColorVar==='duck'){
+        const text='url(/src/images/'+selectedColorVar+'.jpg)'
+        document.getElementById('kk').style.backgroundImage = text;
+    }
+    else{
+        if(selectedColorVar==="brak"){
+            document.getElementById('kk').style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+            document.getElementById('kk').style.backgroundImage = '';
+        }
+        else{
+            document.getElementById('kk').style.backgroundImage = '';
+            document.getElementById('kk').style.backgroundColor = selectedColorVar;
+        }}
+});
 
+//
+function font(selectTag) {
+    var listValue = selectTag.options[selectTag.selectedIndex].text;
 
+    document.getElementById("input_dolny").style.fontFamily = listValue;
+    document.getElementById("input_gorny").style.fontFamily = listValue;
+}
+function changeColor(selectElement) {
+    var selectedColor = selectElement.value;
+    document.getElementById('input_dolny').style.color = selectedColor;
+    document.getElementById('input_gorny').style.color = selectedColor;
 
-
+}
 
